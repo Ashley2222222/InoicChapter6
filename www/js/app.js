@@ -16,13 +16,10 @@ angular.module('App', ['ionic'])
     .state('weather',{
       url:'/weather/:city/:lat/:lng',
       controller:'WeatherController',
-      templateUrl:'view/weather/weather.html'
+      templateUrl:'views/weather/weather.html'
     });
 
   $urlRouterProvider.otherwise('/search');
-})
-.controller('LeftMenuController',function($scope,Locations){
-  $scope.locations=Locations.data;
 })
 
 .run(function($ionicPlatform) {

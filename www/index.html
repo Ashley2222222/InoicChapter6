@@ -21,7 +21,8 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="views/search/search.js"></script>
-        <script src="views/settings/settings.js"></script>
+    <script src="views/settings/settings.js"></script>
+    <script src="views/weather/weather.js"></script>
   </head>
   <body ng-app="App">
     <ion-side-menus>
@@ -44,7 +45,7 @@
             <ion-item class="item-icon-left" ui-sref="search" menu-close><span class="icon ion-search"></span> Find a City</ion-item>
             <ion-item class="item-icon-left" ui-sref="settings" menu-close><span class="icon ion-ios-cog"></span> Settings</ion-item>
             <ion-item class="item-divider">Favourite</ion-item>
-            <ion-item class="item-icon-left" ui-sref = "weather({city:location.city,lat:location.lat,lng:location:lng})" menu-close ng-repeat ="location in locations"><span class="icon ion-ios-location"></span>{{location.city}}</ion-item>
+            <ion-item class="item-icon-left" ui-sref = "weather({city: location.city, lat: location.lat, lng: location.lng})" menu-close ng-repeat ="location in locations"><span class="icon ion-ios-location"></span> {{location.city}}</ion-item>
           </ion-list>
         </ion-content>
       </ion-side-menu>
