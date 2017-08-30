@@ -45,7 +45,7 @@ angular.module('App', ['ionic'])
   return Settings;
 })
 
-.factory('Locations', function () {
+.factory('Locations', function ($ionicPopup) {
   var Locations = {
     data: [{
       city: 'Chicago, IL, USA',
@@ -68,9 +68,18 @@ angular.module('App', ['ionic'])
     toggle: function (item) {
       var index = Locations.getIndex(item);
       if (index >= 0) {
-        Locations.data.splice(index, 1);
+        $ionicPopup.confirm({
+          title:'Are you sure?',
+          template: 'This will remove '+ Locations.data[index].city
+        }).then(function(res){
+          if(res)
+             Locations.data.splice(index, 1);
+        });
       } else {
         Locations.data.push(item);
+        $ionicPopup.alert({
+          title:'Location saved'
+        });
       }
     },
     primary: function (item) {
@@ -85,4 +94,38 @@ angular.module('App', ['ionic'])
   };
 
   return Locations;
+}).filter('timezone',function(){
+  return function(input,timezone){
+    if(input && timezone){
+      var time = moment.tz(input * 1000, timezone);
+      return time.format('LT');
+    }
+    return '';
+  };
+})
+.filter('chance',function(){
+  return function(chance){
+    if(chance){
+      var value = Math.round(chance * 10);
+      return value * 10;
+    }
+    return 0;
+  };
+})
+.filter('icons',function(){
+  var map = {
+    'clear-day': 'ion-ios-sunny',
+    'clear-night':'ion-ios-moon',
+    rain: 'ion-ios-rainy',
+    snow: 'ion-ios-snowy',
+    sleet: 'ion-ios-rainy',
+    wind: 'ion-ios-flag',
+    fog: 'ion-ios-cloud',
+    cloudy: 'ion-ios-cloudy',
+    'partly-cloudy-day': 'ion-ios-partlysunny',
+    'partly-cloudy-night': 'ion-ios-cloudy-night'
+  };
+  return function(icon){
+    return map[icon] || '';
+  }
 });
