@@ -39,7 +39,7 @@ angular.module('App', ['ionic'])
 
 .factory('Settings', function () {
   var Settings = {
-    units: 'us',
+    units: 'si',
     days: 8
   };
   return Settings;
@@ -54,6 +54,10 @@ angular.module('App', ['ionic'])
     },{
       city: 'Canton, GD, CHN',
       lat: 23.20,
+      lng: 113.30
+    },{
+      city: '北京，中国',
+      lat: 43.20,
       lng: 113.30
     }],
     getIndex: function (item) {
@@ -95,7 +99,7 @@ angular.module('App', ['ionic'])
 
   return Locations;
 }).filter('timezone',function(){
-  return function(input,timezone){
+  return function(input, timezone){
     if(input && timezone){
       var time = moment.tz(input * 1000, timezone);
       return time.format('LT');
@@ -103,7 +107,7 @@ angular.module('App', ['ionic'])
     return '';
   };
 })
-.filter('chance',function(){
+.filter('chance', function(){
   return function(chance){
     if(chance){
       var value = Math.round(chance * 10);
@@ -112,7 +116,7 @@ angular.module('App', ['ionic'])
     return 0;
   };
 })
-.filter('icons',function(){
+.filter('icons', function(){
   var map = {
     'clear-day': 'ion-ios-sunny',
     'clear-night':'ion-ios-moon',
