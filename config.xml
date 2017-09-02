@@ -13,7 +13,7 @@
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
   <allow-navigation href="http://ionic.local/*"/>
-  <allow-navigation href="https://maps.googleapis.com/maps/api/*"/>
+  <allow-navigation href="https://maps.googleapis.com/*"/>
   <allow-navigation href="https://api.forecast.io/forecast/*"/>
   <allow-navigation href="http://192.168.22.68:8100"/>
   <allow-navigation href="*"/>
